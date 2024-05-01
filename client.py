@@ -24,16 +24,17 @@ print(f'Соединение с {IP}:{port} успешно установлен�
 
 try:
     while True:
+        message_from_server = client_socket.recv(1024).decode()
+        print(f'Получено: {message_from_server}')
 
-        #обмен с сервером
+        message_from_client = input('Введите текст для отправки: ')
 
-        message = input('Введите текст для отправки: ')
+        client_socket.sendall(message_from_client.encode())
+        print(f'Отправлено: {message_from_client}')
 
-        #обмен с сервером
-
-        if message == "exit":
+        if message_from_client == 'exit':
             break
 except:
-    print("Возникола непредвиденная ошибка, попробуйте снова.")
+    print('Возникла непредвиденная ошибка, попробуйте снова.')
     client_socket.close()
 client_socket.close()
