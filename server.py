@@ -16,7 +16,7 @@ def start_server(host, port):
 
     sock.listen(1)
     logging.info(f'Сервер запущен на {host}:{port}')
-    print(f'Сервер запущен на порту {port}')
+    print(f'Сервер запущен')
 
     while True:
         logging.info('Ожидание подключения клиента...')
