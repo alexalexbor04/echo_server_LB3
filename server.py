@@ -65,8 +65,10 @@ IP = input("Введите IP-адрес сервера (по умолчанию
 if IP == None:
     IP = "127.0.0.1"
 
-port = int(input("Введите порт для внешнего подключения (по умолчанию 12345): "))
-if port == None:
+port = input('Введите порт для внешнего подключения (по умолчанию 12345): ')
+if port == '':
     port = 12345
+else:
+    port = int(port)
 
 start_server(IP, port)
