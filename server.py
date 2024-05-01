@@ -1,17 +1,6 @@
 import socket
 import logging
 
-def get_client_name(client_ip):
-    try:
-        with open('clients.txt', 'r') as file:
-            for line in file:
-                ip, name = line.strip().split(',')
-                if ip == client_ip:
-                    return name
-    except FileNotFoundError:
-        pass
-    return None
-
 logging.basicConfig(filename='server.log', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 def start_server(host, port):
@@ -60,10 +49,21 @@ def start_server(host, port):
             client_socket.sendall(data)
             logging.info(f'{client_name}: {input_data}')
 
-        logging.info('Клиент отключен')
+        logging.info(f'Клиент {client_name} отключен')
         client_socket.close()
 
     sock.close()
+
+def get_client_name(client_ip):
+    try:
+        with open('clients.txt', 'r') as file:
+            for line in file:
+                ip, name = line.strip().split(',')
+                if ip == client_ip:
+                    return name
+    except FileNotFoundError:
+        pass
+    return None
 
 IP = input("Введите IP-адрес сервера: ")
 port = int(input("Введите порт для внешнего подключения: "))
