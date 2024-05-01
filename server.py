@@ -62,7 +62,7 @@ def get_client_name(client_ip):
                 return name
 
 IP = input("Введите IP-адрес сервера (по умолчанию 127.0.0.1): ")
-if IP == None:
+if IP == '':
     IP = "127.0.0.1"
 
 port = input('Введите порт для внешнего подключения (по умолчанию 12345): ')
