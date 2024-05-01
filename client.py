@@ -1,22 +1,12 @@
 import socket
-# from time import sleep
 
-# sock = socket.socket()
-# sock.setblocking(1)
-# sock.connect(('10.38.165.12', 9090))
-
-# #msg = input()
-# msg = "Hi!"
-# sock.send(msg.encode())
-
-# data = sock.recv(1024)
-
-# sock.close()
-
-# print(data.decode())
-
-IP = input('Введите ip адрес для подключения: ')
-port = int(input('Введите порт для подключения: '))
+IP = input('Введите ip адрес для подключения (если ничего ен вводить, значение по умолчанию - 127.0.0.1): ')
+if IP == None:
+    IP = '127.0.0.1'
+    
+port = int(input('Введите порт для подключения (если ничего ен вводить, значение по умолчанию - 12345): '))
+if port == None:
+    port = 12345
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((IP, port))
