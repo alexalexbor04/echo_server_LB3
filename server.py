@@ -55,17 +55,18 @@ def start_server(host, port):
     sock.close()
 
 def get_client_name(client_ip):
-    try:
-        with open('clients.txt', 'r') as file:
-            for line in file:
-                ip, name = line.strip().split(',')
-                if ip == client_ip:
-                    return name
-    except FileNotFoundError:
-        pass
-    return None
+    with open('clients.txt', 'r') as file:
+        for line in file:
+            ip, name = line.strip().split(',')
+            if ip == client_ip:
+                return name
 
-IP = input("Введите IP-адрес сервера: ")
-port = int(input("Введите порт для внешнего подключения: "))
+IP = input("Введите IP-адрес сервера (по умолчанию 127.0.0.1): ")
+if IP == None:
+    IP = "127.0.0.1"
+
+port = int(input("Введите порт для внешнего подключения (по умолчанию 12345): "))
+if port == None:
+    port = 12345
 
 start_server(IP, port)
